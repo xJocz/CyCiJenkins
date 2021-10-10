@@ -21,4 +21,12 @@ describe('Common usage tests to integrate with Jenkins', () => {
         cy.get('.alert').should('have.text', 'Your message has been successfully sent to our team.')
     });
 
+    it('Should fail to authenticate', () => {
+        cy.get('.login').click()
+        cy.get('#email').type('test@test.ts')
+        cy.get('#passwd').type('qwerty123456789')
+        cy.get('#SubmitLogin > span').click()
+        cy.get('ol > li').should('have.text', 'Authentication failed.')
+    });
+
 })
